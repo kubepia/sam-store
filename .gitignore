@@ -34,7 +34,7 @@ hs_err_pid*
 *.ear
 
 #Gradle temporary files
-target/
+target
 
 #Eclipse files
 **/.project
