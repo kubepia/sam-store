@@ -1,4 +1,4 @@
-package io.nogada.petstore.model;
+package io.nogada.petstore.metadata.model;
 
 import java.io.Serializable;
 

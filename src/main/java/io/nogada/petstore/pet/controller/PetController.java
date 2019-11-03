@@ -1,4 +1,4 @@
-package io.nogada.petstore.controller;
+package io.nogada.petstore.pet.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.nogada.petstore.service.PetService;
+import io.nogada.petstore.pet.service.PetService;
 
 /**
  * PetController
@@ -29,5 +29,12 @@ public class PetController {
         logger.info("[Trace]: Controller called");
 		
 		return service.search(q);
+    }
+    @GetMapping(path = "/pet2")
+    @ResponseBody
+    String getPet2(@RequestParam(required=false,defaultValue = "") String q, HttpServletRequest request)throws Exception{
+        logger.info("[Trace]: Controller called");
+		
+		return "service12";
     }
 }

@@ -1,4 +1,4 @@
-package io.nogada.petstore.controller;
+package io.nogada.petstore.metadata.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.nogada.petstore.service.MetaService;
+import io.nogada.petstore.metadata.service.MetaService;
 
 /**
  * MetaController
