@@ -45,5 +45,4 @@ public class PetstoreApplication implements CommandLineRunner {
 		List<City> cities = cityService.getAllCity();
 		logger.info("Count:{}",cities.size());
 	}
-	//wget --no-check-certificate -v -c --tries=2 -O linux.x64_11gR2_database_1of2.zip --user=seungil.han@gmail.com --password=Akka00131@ http://download.oracle.com/otn/linux/oracle11g/R2/linux.x64_11gR2_database_1of2.zip
 }
