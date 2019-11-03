@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="io.nogada.petstore.city.repository.CityMapper">
+
+    <select id="findById" resultType="city">
+        SELECT idCity
+              ,name
+              ,population
+          FROM CITY
+         WHERE idCity = #{id}
+    </select>
+
+    <select id="findByName" resultType="city">
+        SELECT idCity
+              ,name
+              ,population
+          FROM CITY
+         WHERE idCity like %#{name}%
+    </select>
+
+    <select id="getCities" resultType="city"> 
+        select idCity
+            ,name
+            ,population 
+        from city
+    </select>
+    <insert id="insertCity">
+      INSERT INTO CITY (NAME, POPULATION)
+      VALUES (#{name}, #{population})
+    </insert>
+
+</mapper>
