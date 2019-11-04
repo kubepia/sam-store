@@ -12,6 +12,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
+import org.springframework.web.client.RestTemplate;
 
 import io.nogada.petstore.city.model.City;
 import io.nogada.petstore.city.service.CityService;
@@ -37,14 +38,19 @@ public class PetstoreApplication implements CommandLineRunner {
 		return registrationBean;
 	}
 
+	@Bean
+	public RestTemplate getRestTemplate() {
+		return new RestTemplate();
+	}
+
 	@Autowired
 	CityService cityService;
 
 	@Override
 	public void run(String... args) throws Exception {
 		List<City> cities = cityService.getAllCity();
-		logger.info("Count:{}",cities.size());
+		logger.info("Count:{}", cities.size());
 		cities = cityService.getCity("h");
-		logger.info("Count:{}",cities.size());
+		logger.info("Count:{}", cities.size());
 	}
 }
