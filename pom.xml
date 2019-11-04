@@ -10,7 +10,7 @@
 		<!-- lookup parent from repository -->
 	</parent>
 	<groupId>io.nogada</groupId>
-	<artifactId>petstore</artifactId>
+	<artifactId>samstore</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>sample application</name>
 	<description>Demo project for Spring Boot</description>
@@ -65,8 +65,14 @@
 			<groupId>com.oracle</groupId>
 			<artifactId>ojdbc6</artifactId>
 			<version>12.1.0.2</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/lib/ojdbc6.jar</systemPath>
 		</dependency>
-
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>runtime</scope>
+		</dependency>
 
 	</dependencies>
 
@@ -77,24 +83,5 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
-		<resources>
-			<resource>
-				<filtering>false</filtering>
-				<directory>src/main/java</directory>
-				<includes>
-					<include>**/*.xml</include>
-				</includes>
-			</resource>
-			<resource>
-				<directory>src/main/resources</directory>
-			</resource>
-		</resources>
 	</build>
-
-	<repositories>
-		<repository>
-			<id>my-alternate-repository</id>
-			<url>https://mvnrepository.com/artifact</url>
-		</repository>
-	</repositories>
 </project>

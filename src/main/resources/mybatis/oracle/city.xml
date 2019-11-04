@@ -5,7 +5,7 @@
 
 <mapper namespace="io.nogada.petstore.city.repository.CityMapper">
 
-    <select id="findById" resultType="city">
+    <select id="findById" resultType="io.nogada.petstore.city.model.City">
         SELECT idCity
               ,name
               ,population
@@ -13,23 +13,18 @@
          WHERE idCity = #{id}
     </select>
 
-    <select id="findByName" resultType="city">
+    <select id="findByName" resultType="io.nogada.petstore.city.model.City">
         SELECT idCity
               ,name
               ,population
           FROM CITY
-         WHERE idCity like %#{name}%
+         WHERE idCity like concat("%",#{name},"%")
     </select>
 
-    <select id="getCities" resultType="city"> 
+    <select id="getCities" resultType="io.nogada.petstore.city.model.City"> 
         select idCity
             ,name
             ,population 
         from city
     </select>
-    <insert id="insertCity">
-      INSERT INTO CITY (NAME, POPULATION)
-      VALUES (#{name}, #{population})
-    </insert>
-
 </mapper>

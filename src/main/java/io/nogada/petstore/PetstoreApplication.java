@@ -40,6 +40,7 @@ public class PetstoreApplication implements CommandLineRunner {
 
 	@Bean
 	public RestTemplate getRestTemplate() {
+		System.out.println();
 		return new RestTemplate();
 	}
 
@@ -48,9 +49,7 @@ public class PetstoreApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		List<City> cities = cityService.getAllCity();
-		logger.info("Count:{}", cities.size());
-		// cities = cityService.getCity("h");
-		// logger.info("Count:{}", cities.size());
+		// List<City> cities = cityService.getAllCity();
+		// logger.info("Lenght {}",cities.size());
 	}
 }
