@@ -6,10 +6,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.nogada.petstore.pet.model.PetQuery;
+import io.nogada.petstore.pet.service.PetRemoteService;
 import io.nogada.petstore.pet.service.PetService;
 
 /**
@@ -22,19 +26,28 @@ public class PetController {
 
     @Autowired
 	private PetService service;
+    @Autowired
+	private PetRemoteService serviceRemote;
 
     @GetMapping(path = "/pet")
     @ResponseBody
-    String getPet(@RequestParam(required=false,defaultValue = "") String q, HttpServletRequest request)throws Exception{
-        logger.info("[Trace]: Controller called");
-		
+    String getPetInGet(@RequestParam(required=false,defaultValue = "") String q, HttpServletRequest request)throws Exception{
+        logger.info("[Trace]: Controller called");		
 		return service.search(q);
     }
-    @GetMapping(path = "/pet2")
+    @PostMapping(path = "/pet")
     @ResponseBody
-    String getPet2(@RequestParam(required=false,defaultValue = "") String q, HttpServletRequest request)throws Exception{
+    String getPetInPost(@RequestBody String q, HttpServletRequest request)throws Exception{
+        logger.info("[Trace]: Controller called");		
+		return service.search(q);
+    }
+   
+    @PostMapping(path = "/petremote",consumes = "application/json", produces = "application/json")
+    @ResponseBody
+    String getPetFromRemote(@RequestBody PetQuery query, HttpServletRequest request)throws Exception{
         logger.info("[Trace]: Controller called");
 		
-		return "service12";
+		return serviceRemote.search(query.getKeyword());
     }
+
 }

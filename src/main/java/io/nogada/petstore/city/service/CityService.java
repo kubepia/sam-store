@@ -18,9 +18,9 @@ public class CityService {
     @Autowired
     CityMapper cityMapper;
 
-    // public City getCityById(Long id) {
-    //     return cityMapper.findById(id);
-    // }
+    public List<City> getCity(String name) {
+        return cityMapper.findByName(name);
+    }
 
     public List<City> getAllCity() {
         return cityMapper.getCities();

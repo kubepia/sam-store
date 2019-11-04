@@ -14,7 +14,8 @@ import io.nogada.petstore.city.model.City;
 public interface CityMapper {
 
     // City findById(Long idCity);
-    // City findByName(String name);
+    @Select("select idCity,name,population from city where name like concat('%',#{name},'%')")
+    List<City> findByName(String name);
     @Select("select idCity,name,population from city")
     List<City> getCities();
     // void insertCity(City city);
