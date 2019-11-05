@@ -1,7 +1,5 @@
 package io.nogada.petstore;
 
-import java.util.List;
-
 import org.mybatis.spring.annotation.MapperScan;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,7 +12,6 @@ import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
-import io.nogada.petstore.city.model.City;
 import io.nogada.petstore.city.service.CityService;
 
 @EnableCaching
@@ -40,7 +37,7 @@ public class PetstoreApplication implements CommandLineRunner {
 
 	@Bean
 	public RestTemplate getRestTemplate() {
-		System.out.println();
+		logger.info("initialize resttemplate");
 		return new RestTemplate();
 	}
 
