@@ -15,4 +15,28 @@ public class City {
         this.name = name;
         this.population = population;
     }
+
+    public Long getIdCity() {
+        return idCity;
+    }
+
+    public void setIdCity(Long idCity) {
+        this.idCity = idCity;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Long getPopulation() {
+        return population;
+    }
+
+    public void setPopulation(Long population) {
+        this.population = population;
+    }
 }

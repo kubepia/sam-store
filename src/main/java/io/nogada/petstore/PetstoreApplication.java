@@ -50,6 +50,6 @@ public class PetstoreApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		// List<City> cities = cityService.getAllCity();
-		// logger.info("Lenght {}",cities.size());
+		// logger.info("Length {}",cities.size());
 	}
 }
