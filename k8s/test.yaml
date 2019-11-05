@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: testconfig
+data:
+  application.properties: |-
+    spring:
+      port: 9090
