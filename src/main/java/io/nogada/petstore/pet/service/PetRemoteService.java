@@ -19,15 +19,15 @@ import org.springframework.web.client.RestTemplate;
 public class PetRemoteService {
 
     private static final Logger logger = LoggerFactory.getLogger(PetRemoteService.class);
-		
+
 	@Autowired
 	RestTemplate restClient;
-	
+
 	public String search(String q) throws Exception{
 		HttpHeaders headers = new HttpHeaders();
 		headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
 		HttpEntity <String> entity = new HttpEntity<String>(headers);
-		
+		logger.info("dkdkdk");
 		String str= restClient.exchange("http://localhost:8080/pet", HttpMethod.GET, entity, String.class).getBody();
 		return str;
 

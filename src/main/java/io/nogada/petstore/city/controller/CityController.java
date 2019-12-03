@@ -21,12 +21,13 @@ public class CityController {
 
     @Autowired
     CityService service;
-    
+
     @GetMapping(path = "/city")
     @ResponseBody
     List<City> getPetInGet()throws Exception{
-        logger.info("[Trace]: Controller called get cities");		
+        logger.info("[Trace]: Controller called get cities");
+        logger.info("");
 		return service.getAllCity();
     }
-    
+
 }
