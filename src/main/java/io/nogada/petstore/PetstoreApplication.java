@@ -22,6 +22,7 @@ public class PetstoreApplication implements CommandLineRunner {
 	private static final Logger logger = LoggerFactory.getLogger(PetstoreApplication.class);
 
 	public static void main(String[] args) {
+        System.out.println("Hello");
 		SpringApplication.run(PetstoreApplication.class, args);
 	}
 
