@@ -20,7 +20,7 @@ spec:
       - name: samstore
         image: nogada/sam-hpa
         ports:
-        - containerPort: 9090
+        - containerPort: 8080
           name: tomcat
         imagePullPolicy: IfNotPresent
         resources:
