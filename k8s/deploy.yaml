@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: samstore
-        image: nogada/sam-hpa
+        image: nogada/sam-hpa:v3
         ports:
         - containerPort: 8080
           name: tomcat
@@ -40,14 +40,14 @@ spec:
           httpGet:
             path: /health
             port: tomcat
-          initialDelaySeconds: 5
+          initialDelaySeconds: 30
           periodSeconds: 5
-        volumeMounts:
-        - name: application-property
-          mountPath: /config
-      volumes:
-      - name: application-property
-        configMap:
-        # Provide the name of the ConfigMap containing the files you want
-        # to add to the container
-          name: datasource
+      #   volumeMounts:
+      #   - name: application-property
+      #     mountPath: /config
+      # volumes:
+      # - name: application-property
+      #   configMap:
+      #   # Provide the name of the ConfigMap containing the files you want
+      #   # to add to the container
+      #     name: datasource
