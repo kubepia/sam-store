@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: samstore
-        image: nogada/sam-hpa:latest
+        image: nogada/sam-hpa
         ports:
         - containerPort: 9090
           name: tomcat
