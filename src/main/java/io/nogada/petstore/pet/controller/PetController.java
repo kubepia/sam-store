@@ -12,8 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.nogada.petstore.pet.model.PetQuery;
-import io.nogada.petstore.pet.service.PetRemoteService;
+// import io.nogada.petstore.pet.model.PetQuery;
 import io.nogada.petstore.pet.service.PetService;
 
 /**
@@ -26,28 +25,43 @@ public class PetController {
 
     @Autowired
 	private PetService service;
-    @Autowired
-	private PetRemoteService serviceRemote;
+    // @Autowired
+	// private PetRemoteService serviceRemote;
 
     @GetMapping(path = "/pet")
     @ResponseBody
-    String getPetInGet(@RequestParam(required=false,defaultValue = "") String q, HttpServletRequest request)throws Exception{
-        logger.info("[Trace]: Controller called");		
-		return service.search(q);
+    String getPetInGet(@RequestParam(required=false,defaultValue = "") final String q,
+            final HttpServletRequest request) throws Exception {
+        logger.info("[Trace]: Controller called");
+        return service.search(q);
     }
+
+    @GetMapping(path = "/load")
+    @ResponseBody
+    String load(@RequestParam(defaultValue = "1000") final int number) throws Exception {
+        logger.info("[Trace]: Load test for HPA");
+        this.service.eatingMemory(number);
+        return "ok";
+    }
+    @GetMapping(path = "/health")
+    @ResponseBody
+    String health() throws Exception {
+        return "ok";
+    }
+
     @PostMapping(path = "/pet")
     @ResponseBody
-    String getPetInPost(@RequestBody String q, HttpServletRequest request)throws Exception{
-        logger.info("[Trace]: Controller called");		
-		return service.search(q);
-    }
-   
-    @PostMapping(path = "/petremote",consumes = "application/json", produces = "application/json")
-    @ResponseBody
-    String getPetFromRemote(@RequestBody PetQuery query, HttpServletRequest request)throws Exception{
+    String getPetInPost(@RequestBody final String q, final HttpServletRequest request) throws Exception {
         logger.info("[Trace]: Controller called");
-		
-		return serviceRemote.search(query.getKeyword());
+        return service.search(q);
     }
+
+    // @PostMapping(path = "/petremote", consumes = "application/json", produces = "application/json")
+    // @ResponseBody
+    // String getPetFromRemote(@RequestBody final PetQuery query, final HttpServletRequest request) throws Exception {
+    //     logger.info("[Trace]: Controller called");
+		
+	// 	return serviceRemote.search(query.getKeyword());
+    // }
 
 }

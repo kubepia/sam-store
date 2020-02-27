@@ -3,7 +3,6 @@ package io.nogada.petstore;
 import org.mybatis.spring.annotation.MapperScan;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -11,8 +10,6 @@ import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
-
-import io.nogada.petstore.city.service.CityService;
 
 @EnableCaching
 @SpringBootApplication
@@ -42,8 +39,8 @@ public class PetstoreApplication implements CommandLineRunner {
 		return new RestTemplate();
 	}
 
-	@Autowired
-	CityService cityService;
+	// @Autowired
+	// CityService cityService;
 
 	@Override
 	public void run(String... args) throws Exception {

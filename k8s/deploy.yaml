@@ -5,7 +5,7 @@ metadata:
   labels:
     app: samstore-deploy
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: samstore-pod
@@ -18,18 +18,30 @@ spec:
     spec:
       containers:
       - name: samstore
-        image: myguddy/samstore
+        image: nogada/sam-hpa:latest
         ports:
         - containerPort: 9090
           name: tomcat
-        imagePullPolicy: Always
+        imagePullPolicy: IfNotPresent
         resources:
           limits:
             cpu: 500m
-            memory: 1024Mi
+            memory: 512Mi
           requests:
             cpu: 300m
             memory: 256Mi
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: tomcat
+          initialDelaySeconds: 5
+          periodSeconds: 60
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: tomcat
+          initialDelaySeconds: 5
+          periodSeconds: 5
         volumeMounts:
         - name: application-property
           mountPath: /config

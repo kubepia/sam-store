@@ -4,7 +4,7 @@ metadata:
   name: samstore-ing
 spec:
   rules:
-  - host: petstore.icp4a.com
+  - host: g3.hpa.skb.kr
     http:
       paths:
       - path: /
