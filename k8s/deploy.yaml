@@ -1,53 +1,29 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: samstore-deploy
+  name: store
   labels:
-    app: samstore-deploy
+    app: store
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: samstore-pod
-  strategy:
-    type: RollingUpdate
+      app: store
   template:
     metadata:
       labels:
-        app: samstore-pod
+        app: store
     spec:
       containers:
-      - name: samstore
-        image: nogada/sam-hpa:v3
+      - name: store
+        image: myguddy/sam-icp4a
+        resources:
+          requests:
+            memory: "100Mi"
+            cpu: "100m"
+          limits:
+            memory: "200Mi"
+            cpu: "500m"
         ports:
         - containerPort: 8080
-          name: tomcat
-        imagePullPolicy: IfNotPresent
-        resources:
-          limits:
-            cpu: 500m
-            memory: 512Mi
-          requests:
-            cpu: 300m
-            memory: 256Mi
-        livenessProbe:
-          httpGet:
-            path: /health
-            port: tomcat
-          initialDelaySeconds: 5
-          periodSeconds: 60
-        readinessProbe:
-          httpGet:
-            path: /health
-            port: tomcat
-          initialDelaySeconds: 30
-          periodSeconds: 5
-      #   volumeMounts:
-      #   - name: application-property
-      #     mountPath: /config
-      # volumes:
-      # - name: application-property
-      #   configMap:
-      #   # Provide the name of the ConfigMap containing the files you want
-      #   # to add to the container
-      #     name: datasource
+          name: apport
