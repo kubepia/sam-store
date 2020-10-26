@@ -85,4 +85,5 @@ stages:
           echo $(Build.SourcesDirectory)
           echo $(ls -al)
           echo $(pwd)
+          echo $(tag)
         
