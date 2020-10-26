@@ -13,7 +13,7 @@ resources:
       name: kubepia/sam-kustomize
 
 variables:
-  system.debug: true
+  # system.debug: true
   version: '$(Get-Date -Format yyyyMMddhhmmss).$(Build.BuildId)'
   # Container registry service connection established during pipeline creation
   dockerRegistryServiceConnection: 'vrd-dockerhub'
@@ -64,3 +64,4 @@ stages:
           echo $(Build.SourcesDirectory)
           echo $(ls -al)
           echo $(pwd)
+          echo $(dockerfilePath)
