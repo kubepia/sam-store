@@ -85,9 +85,10 @@ stages:
       displayName: release tag in git
       inputs:
         targetType: 'inline'
-        workingDirectory: ../overlays/dev
+        workingDirectory: $(Build.SourcesDirectory)/overlays/dev
         script: |
-          kustomize edit set image $(imageRepository):$(tag)
+          echo $(Build.SourcesDirectory)
           echo $(ls -al)
+          kustomize edit set image $(imageRepository):$(tag)
           cat kustomization.yaml
         
