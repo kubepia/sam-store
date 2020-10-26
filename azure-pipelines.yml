@@ -55,19 +55,17 @@ stages:
     #     containerRegistry: $(dockerRegistryServiceConnection)
     #     tags: |
     #       $(tag)
-    # - task: Bash@3
-    #   displayName: release tag in git
-    #   inputs:
-    #     targetType: 'inline'
-    #     script: |
-    #       echo $(Build.SourcesDirectory)
-    #       echo $(ls -al)
-    #       echo $(pwd)
-    #       git config --global user.email "you@example.com"
-    #       git config --global user.name "Your Name"
-    #       git tag -a $(tag) -m "test"
-    - task: git-tag-on-release-task@9
-      displayName: "Add Tag to git"
+    - task: Bash@3
+      displayName: release tag in git
       inputs:
-        staticTagName: "TEST-$(Build.BuildNumber)"
+        targetType: 'inline'
+        script: |
+          echo $(Build.SourcesDirectory)
+          echo $(ls -al)
+          echo $(pwd)
+          git config --global user.email "you@example.com"
+          git config --global user.name "Your Name"
+          git tag -a $(tag) -m "test"
+          git push --tags
+    
         
