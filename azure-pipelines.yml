@@ -17,7 +17,7 @@ variables:
   # containerRegistry: '12c40ee7eb904855b6858d38e2ed1f5a.azurecr.io'
   # '$(variables.version)'
   dockerfilePath: '**/Dockerfile'
-  tag: '$(Date:yyyyMMddhhmm).$(Build.BuildId)'
+  tag: $(Rev:.r)
   # imagePullSecret: '12c40ee7eb904855b6858d38e2ed1f5a80298e43-auth'
 
   # Agent VM image name
