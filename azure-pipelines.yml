@@ -39,6 +39,7 @@ stages:
     steps:
     - checkout: self
       persistCredentials: true
+    - checkout: kustomize
     - task: Bash@3
       displayName: create version string
       inputs:
@@ -63,5 +64,7 @@ stages:
           echo $(Build.SourcesDirectory)
           echo $(ls -al)
           echo $(pwd)
+          git config --global user.email "you@example.com"
+          git config --global user.name "Your Name"
           git tag -a $(tag) -m "test"
         
