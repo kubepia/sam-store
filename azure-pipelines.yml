@@ -26,7 +26,8 @@ variables:
 
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
-  
+
+name: $(Date:yyyyMMdd).$(Rev:.r)  
 
 stages:
 - stage: Build
@@ -39,19 +40,19 @@ stages:
     steps:
     - checkout: self
       persistCredentials: true
-    - task: Bash@3
-      displayName: create version string
-      inputs:
-        targetType: 'inline'
-        script: |
-          VERSION=$(date +%Y%m%d).$(Build.BuildId)
-          echo "##vso[task.setvariable variable=tag;]$VERSION"
+    # - task: Bash@3
+    #   displayName: create version string
+    #   inputs:
+    #     targetType: 'inline'
+    #     script: |
+    #       VERSION=$(date +%Y%m%d).$(Build.BuildId)
+    #       echo "##vso[task.setvariable variable=tag;]$VERSION"
     - task: Docker@2
       displayName: Build and push an image to container registry
       inputs:
         command: buildAndPush
         repository: $(imageRepository)
-        dockerfile: $(Build.SourcesDirectory)/app/Dockerfile
+        dockerfile: $(dockerfilePath)
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
@@ -67,5 +68,19 @@ stages:
           git config --global user.name "Your Name"
           git tag -a $(tag) -m "test"
           git push --tags
-    
+  - job: Deploy
+    displayName: Deploy to k8s
+    pool:
+      vmImage: $(vmImageName)
+    steps:
+    - checkout: kustomize
+      persistCredentials: true
+    - task: Bash@3
+      displayName: release tag in git
+      inputs:
+        targetType: 'inline'
+        script: |
+          echo $(Build.SourcesDirectory)
+          echo $(ls -al)
+          echo $(pwd)
         
