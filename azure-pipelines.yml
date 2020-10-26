@@ -38,7 +38,9 @@ stages:
       vmImage: $(vmImageName)
     steps:
     - checkout: kustomize
+      path: deploy
     - checkout: self
+      path: app
     - task: Bash@3
       displayName: create version string
       inputs:
@@ -61,5 +63,8 @@ stages:
         targetType: 'inline'
         script: |
           echo $(Build.SourcesDirectory)
+          echo $(ls -al)
+          cd app
+          echo $(ls -al)
           git tag -a $(tag) -m "test"
-        workingDirectory: $(Build.SourcesDirectory)
+        
