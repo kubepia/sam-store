@@ -60,8 +60,5 @@ stages:
       inputs:
         targetType: 'inline'
         script: |
-          # git tag -a $(tag) -m "test"
-          echo $(Build.SourcesDirectory)
-          echo $(ls -al)
-          echo $(pwd)
-          echo $(dockerfilePath)
+          git tag -a $(tag) -m "test"
+        workingDirectory: $(Build.SourcesDirectory)
