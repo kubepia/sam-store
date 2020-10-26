@@ -70,6 +70,10 @@ stages:
           git config --global user.name "Your Name"
           git tag -a $(tag) -m "test"
           git push --tags
+- stage: Deploy
+  dependsOn: Build
+  displayName: Deploy stage
+  jobs: 
   - job: Deploy
     displayName: Deploy to k8s
     pool:
