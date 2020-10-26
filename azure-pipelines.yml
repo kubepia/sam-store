@@ -99,9 +99,16 @@ stages:
         renderType: kustomize
         kustomizationPath: $(Build.SourcesDirectory)/overlays/dev/
 
-    - task: KubernetesManifest@0
-      displayName: Deploy K8s manifests
+    # - task: KubernetesManifest@0
+    #   displayName: Deploy K8s manifests
+    #   inputs:
+    #     kubernetesServiceConnection: skgc-vrd-prod-koce-aks
+    #     manifests: $(bake.manifestsBundle)
+    - task: Kubernetes@1
+      displayName: kubectl apply
       inputs:
-        kubernetesServiceConnection: skgc-vrd-prod-koce-aks
-        manifests: $(bake.manifestsBundle)
+        connectionType: Kubernetes Service Connection
+        kubernetesServiceEndpoint: skgc-vrd-prod-koce-aks
+        command: apply
+        arguments: -f $(bake.manifestsBundle)
         
