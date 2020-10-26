@@ -63,3 +63,4 @@ stages:
           # git tag -a $(tag) -m "test"
           echo $(Build.SourcesDirectory)
           echo $(ls -al)
+          echo $(pwd)
