@@ -39,7 +39,6 @@ stages:
     steps:
     - checkout: self
       persistCredentials: true
-    - checkout: kustomize
     - task: Bash@3
       displayName: create version string
       inputs:
