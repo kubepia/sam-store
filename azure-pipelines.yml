@@ -60,5 +60,6 @@ stages:
       inputs:
         targetType: 'inline'
         script: |
+          echo $(Build.SourcesDirectory)
           git tag -a $(tag) -m "test"
         workingDirectory: $(Build.SourcesDirectory)
