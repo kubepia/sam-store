@@ -10,7 +10,7 @@ resources:
     - repository: kustomize
       type: github
       endpoint: kubepia
-      name: kubepia/sam-kunepia
+      name: kubepia/sam-kustomize
 
 variables:
   system.debug: true
