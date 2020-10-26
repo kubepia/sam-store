@@ -15,8 +15,9 @@ variables:
   dockerRegistryServiceConnection: 'vrd-dockerhub'
   imageRepository: 'bekube/samstore'
   # containerRegistry: '12c40ee7eb904855b6858d38e2ed1f5a.azurecr.io'
+  # '$(variables.version)'
   dockerfilePath: '**/Dockerfile'
-  tag: '$(variables.version)'
+  tag: '$(Get-Date -Format yyyyMMddhhmmss).$(Build.BuildId)'
   # imagePullSecret: '12c40ee7eb904855b6858d38e2ed1f5a80298e43-auth'
 
   # Agent VM image name
