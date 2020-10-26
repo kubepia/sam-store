@@ -1,0 +1,19 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: kubepiasamstore 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kubepiasamstore
+  template:
+    metadata:
+      labels:
+        app: kubepiasamstore 
+    spec:
+      containers:
+        - name: kubepiasamstore 
+          image: 12c40ee7eb904855b6858d38e2ed1f5a.azurecr.io/kubepiasamstore
+          ports:
+          - containerPort: 80
