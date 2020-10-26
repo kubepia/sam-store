@@ -46,15 +46,15 @@ stages:
         script: |
           VERSION=$(date +%Y%m%d).$(Build.BuildId)
           echo "##vso[task.setvariable variable=tag;]$VERSION"
-    # - task: Docker@2
-    #   displayName: Build and push an image to container registry
-    #   inputs:
-    #     command: buildAndPush
-    #     repository: $(imageRepository)
-    #     dockerfile: $(Build.SourcesDirectory)/app/Dockerfile
-    #     containerRegistry: $(dockerRegistryServiceConnection)
-    #     tags: |
-    #       $(tag)
+    - task: Docker@2
+      displayName: Build and push an image to container registry
+      inputs:
+        command: buildAndPush
+        repository: $(imageRepository)
+        dockerfile: $(Build.SourcesDirectory)/app/Dockerfile
+        containerRegistry: $(dockerRegistryServiceConnection)
+        tags: |
+          $(tag)
     - task: Bash@3
       displayName: release tag in git
       inputs:
