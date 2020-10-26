@@ -12,6 +12,8 @@ resources:
       endpoint: kubepia
       name: kubepia/sam-kustomize
 
+name: $(Date:yyyyMMdd).$(Rev:.r)  
+
 variables:
   # system.debug: true
   version: '$(Get-Date -Format yyyyMMddhhmmss).$(Build.BuildId)'
@@ -21,13 +23,13 @@ variables:
   # containerRegistry: '12c40ee7eb904855b6858d38e2ed1f5a.azurecr.io'
   # '$(variables.version)'
   dockerfilePath: '**/Dockerfile'
-  tag: '$(Rev:.r)'
+  tag: $(Build.BuildNumber)
   # imagePullSecret: '12c40ee7eb904855b6858d38e2ed1f5a80298e43-auth'
 
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
 
-name: $(Date:yyyyMMdd).$(Rev:.r)  
+
 
 stages:
 - stage: Build
