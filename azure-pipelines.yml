@@ -40,6 +40,7 @@ stages:
     - checkout: kustomize
     - checkout: self
     - task: Bash@3
+      displayName: create version string
       inputs:
         targetType: 'inline'
         script: |
@@ -54,3 +55,9 @@ stages:
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
+    - task: Bash@3
+      displayName: release tag in git
+      inputs:
+        targetType: 'inline'
+        script: |
+          git tag -a $(tag) -m "test"
