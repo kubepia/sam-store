@@ -91,6 +91,7 @@ stages:
           echo $(ls -al)
           kustomize edit set image $(imageRepository):$(tag)
           cat kustomization.yaml
+          kustomize build ./
     # - task: KubernetesManifest@0
     #   name: bake
     #   displayName: Bake K8s manifests from kustomization path
