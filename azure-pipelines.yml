@@ -97,7 +97,7 @@ stages:
     #   inputs:
     #     action: bake
     #     renderType: kustomize
-    #     kustomizationPath: $(Build.SourcesDirectory)/overlays/dev/
+    #     kustomizationPath: $(Build.SourcesDirectory)/overlays/dev/cd 
 
     # - task: KubernetesManifest@0
     #   displayName: Deploy K8s manifests
