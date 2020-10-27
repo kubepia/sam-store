@@ -29,7 +29,10 @@ variables:
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
 
-
+parameters:
+- name: experimentalTemplate
+  displayName: 'Use experimental build process?'
+  type: boolean
 
 stages:
 - stage: Build
