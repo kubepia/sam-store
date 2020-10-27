@@ -30,7 +30,7 @@ variables:
   vmImageName: 'ubuntu-latest'
 
 parameters:
-- name: experimentalTemplate
+- name: yesNo
   displayName: 'Use experimental build process?'
   type: boolean
 
