@@ -29,11 +29,6 @@ variables:
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
 
-parameters:
-- name: yesNo
-  displayName: 'Use experimental build process?'
-  type: boolean
-
 stages:
 - stage: Build
   displayName: Build stage
@@ -68,6 +63,7 @@ stages:
         script: |
           echo $(set)
           echo $(dockerRegistryServiceConnection)
+          echo $(Build.Repository.Name)
           echo $(Build.SourcesDirectory)
           echo $(ls -al)
           echo $(pwd)
