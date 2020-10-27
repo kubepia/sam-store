@@ -91,7 +91,7 @@ stages:
           echo $(ls -al)
           kustomize edit set image $(imageRepository):$(tag)
           cat kustomization.yaml
-          kustomize build ./
+          kustomize build ./ -o ../../deploy.yaml
     # - task: KubernetesManifest@0
     #   name: bake
     #   displayName: Bake K8s manifests from kustomization path
@@ -111,5 +111,5 @@ stages:
         connectionType: Kubernetes Service Connection
         kubernetesServiceEndpoint: skgc-vrd-prod-koce-aks
         command: apply
-        arguments: -k $(Build.SourcesDirectory)/overlays/dev/
+        arguments: -f $(Build.SourcesDirectory)/deploy.yaml
         
