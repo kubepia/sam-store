@@ -66,6 +66,8 @@ stages:
       inputs:
         targetType: 'inline'
         script: |
+          echo $(set)
+          echo $(dockerRegistryServiceConnection)
           echo $(Build.SourcesDirectory)
           echo $(ls -al)
           echo $(pwd)
