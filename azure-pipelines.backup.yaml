@@ -18,7 +18,7 @@ variables:
   # system.debug: true
   version: '$(Get-Date -Format yyyyMMddhhmmss).$(Build.BuildId)'
   # Container registry service connection established during pipeline creation
-  dockerRegistryServiceConnection: 'bekube'
+  dockerRegistryServiceConnection: 'vrd-dockerhub'
   imageRepository: 'bekube/samstore'
   # containerRegistry: '12c40ee7eb904855b6858d38e2ed1f5a.azurecr.io'
   # '$(variables.version)'
