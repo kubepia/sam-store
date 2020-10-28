@@ -5,12 +5,12 @@
 trigger:
 - master
 
-resources:
-  repositories:
-    - repository: kustomize
-      type: github
-      endpoint: kubepia
-      name: kubepia/sam-kustomize
+# resources:
+#   repositories:
+#     - repository: kustomize
+#       type: github
+#       endpoint: kubepia
+#       name: kubepia/sam-kustomize
 
 name: $(Date:yyyyMMdd)$(Rev:.r)  
 
@@ -71,46 +71,46 @@ stages:
           git config --global user.name "Your Name"
           git tag -a $(tag) -m "test"
           git push --tags
-- stage: Deploy
-  dependsOn: Build
-  displayName: Deploy stage
-  jobs: 
-  - job: Deploy
-    displayName: Deploy to k8s
-    pool:
-      vmImage: $(vmImageName)
-    steps:
-    - checkout: kustomize
-      persistCredentials: true
-    - task: Bash@3
-      displayName: release tag in git
-      inputs:
-        targetType: 'inline'
-        workingDirectory: $(Build.SourcesDirectory)/overlays/dev
-        script: |
-          echo $(Build.SourcesDirectory)
-          echo $(ls -al)
-          kustomize edit set image $(imageRepository):$(tag)
-          cat kustomization.yaml
-          kustomize build ./ -o ../../deploy.yaml
-    # - task: KubernetesManifest@0
-    #   name: bake
-    #   displayName: Bake K8s manifests from kustomization path
-    #   inputs:
-    #     action: bake
-    #     renderType: kustomize
-    #     kustomizationPath: $(Build.SourcesDirectory)/overlays/dev/cd 
+# - stage: Deploy
+#   dependsOn: Build
+#   displayName: Deploy stage
+#   jobs: 
+#   - job: Deploy
+#     displayName: Deploy to k8s
+#     pool:
+#       vmImage: $(vmImageName)
+#     steps:
+#     - checkout: kustomize
+#       persistCredentials: true
+#     - task: Bash@3
+#       displayName: release tag in git
+#       inputs:
+#         targetType: 'inline'
+#         workingDirectory: $(Build.SourcesDirectory)/overlays/dev
+#         script: |
+#           echo $(Build.SourcesDirectory)
+#           echo $(ls -al)
+#           kustomize edit set image $(imageRepository):$(tag)
+#           cat kustomization.yaml
+#           kustomize build ./ -o ../../deploy.yaml
+#     # - task: KubernetesManifest@0
+#     #   name: bake
+#     #   displayName: Bake K8s manifests from kustomization path
+#     #   inputs:
+#     #     action: bake
+#     #     renderType: kustomize
+#     #     kustomizationPath: $(Build.SourcesDirectory)/overlays/dev/cd 
 
-    # - task: KubernetesManifest@0
-    #   displayName: Deploy K8s manifests
-    #   inputs:
-    #     kubernetesServiceConnection: skgc-vrd-prod-koce-aks
-    #     manifests: $(bake.manifestsBundle)
-    - task: Kubernetes@1
-      displayName: kubectl apply
-      inputs:
-        connectionType: Kubernetes Service Connection
-        kubernetesServiceEndpoint: skgc-vrd-prod-koce-aks
-        command: apply
-        arguments: -f $(Build.SourcesDirectory)/deploy.yaml
+#     # - task: KubernetesManifest@0
+#     #   displayName: Deploy K8s manifests
+#     #   inputs:
+#     #     kubernetesServiceConnection: skgc-vrd-prod-koce-aks
+#     #     manifests: $(bake.manifestsBundle)
+#     - task: Kubernetes@1
+#       displayName: kubectl apply
+#       inputs:
+#         connectionType: Kubernetes Service Connection
+#         kubernetesServiceEndpoint: skgc-vrd-prod-koce-aks
+#         command: apply
+#         arguments: -f $(Build.SourcesDirectory)/deploy.yaml
         

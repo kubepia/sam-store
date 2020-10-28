@@ -6,7 +6,11 @@ trigger:
 - master
 
 resources:
-- repo: self
+  repositories:
+  - repository: template
+    type: github
+    endpoint: kubepia
+    name: kubepia/azure-cicd-template
 
 variables:
   tag: '$(Build.BuildId)'
