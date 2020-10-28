@@ -10,7 +10,7 @@ trigger:
 #     - repository: kustomize
 #       type: github
 #       endpoint: kubepia
-#       name: kubepia/sam-kustomize
+#       name: kubepia/sam-kustomize 
 
 name: $(Date:yyyyMMdd)$(Rev:.r)  
 
