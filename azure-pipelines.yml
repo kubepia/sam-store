@@ -10,7 +10,7 @@ resources:
   - repository: template
     type: github
     endpoint: kubepia
-    name: kubepia/azure-cicd-template
+    name: kubepia/azure-cicid-template
 
 variables:
   tag: '$(Build.BuildId)'
